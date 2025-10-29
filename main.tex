@@ -1,4 +1,6 @@
-\documentclass{article}
+\documentclass[12pt,a4paper]{report}
+\renewcommand{\thesection}{\arabic{section}}
+
 \usepackage{titling}
 \usepackage{blindtext}
 \usepackage{amsmath}
@@ -10,6 +12,8 @@
 \usepackage{afterpage}
 \usepackage{algpseudocode}
 \usepackage{listings}
+\usepackage{graphicx}
+\usepackage[titletoc, title]{appendix}
 %%%%%%%%%%
 \begin{document}
 \title{
@@ -17,9 +21,10 @@
   \\
   Term Project Report
   \\
+  \vspace{2cm}
   SmartFridge, an AI agent that recommends the best recipe for you
+  \vspace{4cm}
 }
-
 
 
 \author{
@@ -35,6 +40,12 @@
 \include{contents/Utility}
 \include{contents/Decision_Making}
 \include{contents/Future_Improvement}
+
+\begin{appendices}
+\renewcommand{\thesection}{Appendix \arabic{section}}
+\include{appendix/appendices}
+\end{appendices}
+
 \bibliographystyle{ACM-Reference-Format}
 \bibliography{reference}
 %%%%%%%%%%
