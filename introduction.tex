@@ -18,6 +18,8 @@ The recommendation is simulated by a decision-making process to decide which rec
 For clarity, the main symbols and assumptions used in this report is defined below:
 
 \begin{itemize}
-    \item $\mathcal{F} = \{f_1, f_2, \dots f_n\}$ denotes the set of food items available and currently stored in the fridge.
-    \item Each food item $f_i$ is associated with an days in the fridge $d_{f_i}$, 
+    \item $\Fridge = \{ \food_1, \food_2, \dots, \food_n\}$ denotes the set of food items available and currently stored in the fridge.
+    \item Each food item $f_i$ is associated with food names $\fname_{\food_i}$ days in the fridge $\days_{\food_i}$, food type $\fty_{\food_i}$, storage type $\sty_{\food_i}$.
+    \item $\forall \fty_{\food_i}, \fty_{\food_i}\in \FT, \FT = \{ \CANNED, \VEGFRUIT, \MEAT \}$. To simplify the problems, we only focus on these three types of food.
+    \item $\forall \sty_{\food_i}, \sty_{\food_i}\in \ST, \ST = \{ \REFR, \FRZN, \NORM \}$. Similarly, we limit the scope of the discussion to only these three types of storage
 \end{itemize}

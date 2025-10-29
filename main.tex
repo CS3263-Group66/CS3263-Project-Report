@@ -16,6 +16,7 @@
 \usepackage[titletoc, title]{appendix}
 %%%%%%%%%%
 \begin{document}
+
 \title{
   CS3263 -- Foundations of Artificial Intelligence
   \\
@@ -35,6 +36,29 @@
 
 \date{\today}
 \maketitle
+
+% Defining new variable terms
+\newcommand{\Fridge}{\mathcal{F}}
+\newcommand{\RecipeMenu}{\mathcal{M}}
+\newcommand{\food}{\mathit{f}}
+\newcommand{\recipe}{\mathit{r}}
+\newcommand{\days}{\mathit{days}}
+\newcommand{\fname}{\mathit{f\_name}}
+\newcommand{\fty}{\mathit{fty}} % Food type
+\newcommand{\sty}{\mathit{sty}} % Storage type
+\newcommand{\FT}{\mathit{FT}} % Set of food types
+\newcommand{\ST}{\mathit{ST}} % Set of storage types
+
+% Elements of FoodType
+\newcommand{\CANNED}{\text{CANNED}}
+\newcommand{\VEGFRUIT}{\text{VEG\_OR\_FRUIT}}
+\newcommand{\MEAT}{\text{MEAT}}
+
+% Elements of StorageType
+\newcommand{\REFR}{\text{REFRIGERATE}}
+\newcommand{\FRZN}{\text{FROZEN}}
+\newcommand{\NORM}{\text{NORMAL\_TEMP}}
+
 \include{introduction}
 \include{contents/BN}
 \include{contents/Utility}
