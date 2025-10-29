@@ -23,8 +23,9 @@ For clarity, the main symbols and assumptions used in this report is defined bel
     \item $\forall \fty_{\food_i}, \fty_{\food_i}\in \FT, \FT = \{ \CANNED, \VEGFRUIT, \MEAT \}$. To simplify the problems, we only focus on these three types of food.
     \item $\forall \sty_{\food_i}, \sty_{\food_i}\in \ST, \ST = \{ \REFR, \FRZN, \NORM \}$. Similarly, we limit the scope of the discussion to only these three types of storage.
     \item $\forall \fname_{\food_i}, \fname_{\food_i} \in \FoodNames$, $\FoodNames$ is the set of food names available in the fridge.
-    \item $\RecipeMenu$ is the set of recipes that will be available for users. A fixed set of recipes has been redifined with its relevant attributes.
+    \item $\RecipeMenu$ is the set of recipes $\recipe_i$ that will be available for users. A fixed set of recipes has been redefined with its relevant attributes. 
     \item Each recipe $\recipe_i$ has an unique attribute of recipe name $\recipen_{\recipe_i}$.
     \item Each recipe $\recipe_i$ has a requirements in form of a set of names of the required food items $\requirements_{\recipe_i} = \{ \fname_{F} | \fname_{F} \in \mathcal{N} \}$.
-    \item 
+    \item Each recipe $\recipe_i$ has a corresponding list of tags $\taglist_{\recipe_i}$, which will be then used in determining the desirability of a recipe.
+    \item We assume the quantity of food available in the fridge is sufficient for any recipe that required this food as part of the ingredient requirements.
 \end{itemize}
