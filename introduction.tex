@@ -20,8 +20,8 @@ For clarity, the main symbols and assumptions used in this report is defined bel
 \begin{itemize}
     \item $\Fridge = \{ \food_1, \food_2, \dots, \food_n\}$ denotes the set of food items available and currently stored in the fridge.
     \item Each food item $f_i$ is associated with food names $\fname_{\food_i}$ days in the fridge $\days_{\food_i}$, food type $\fty_{\food_i}$, storage type $\sty_{\food_i}$.
-    \item $\forall \fty_{\food_i}, \fty_{\food_i}\in \FT, \FT = \{ \CANNED, \VEGFRUIT, \MEAT \}$. To simplify the problems, we only focus on these three types of food.
-    \item $\forall \sty_{\food_i}, \sty_{\food_i}\in \ST, \ST = \{ \REFR, \FRZN, \NORM \}$. Similarly, we limit the scope of the discussion to only these three types of storage.
+    \item $\forall \fty_{\food_i}, \fty_{\food_i}\in \FT, \FT = \{ \CANNED, \VEGFRUIT, \MEAT \}$. To simplify the problems, we only focus on three types of food: canned food, vegetable and fruits, and meat.
+    \item $\forall \sty_{\food_i}, \sty_{\food_i}\in \ST, \ST = \{ \REFR, \FRZN, \NORM \}$. Similarly, we limit the scope of the discussion to only three types of storage condition required by each food: refrigerated, frozen and normal temperature.
     \item $\forall \fname_{\food_i}, \fname_{\food_i} \in \FoodNames$, $\FoodNames$ is the set of food names available in the fridge.
     \item $\RecipeMenu$ is the set of recipes $\recipe_i$ that will be available for users. A fixed set of recipes has been redefined with its relevant attributes. 
     \item Each recipe $\recipe_i$ has an unique attribute of recipe name $\recipen_{\recipe_i}$.

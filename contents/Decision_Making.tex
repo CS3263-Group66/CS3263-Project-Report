@@ -1,8 +1,28 @@
 \section{Decision Making}
-Aim to maximize the expected utility of a recipe.
-$$
-\text{MEU} = \max_{a \in A} \mathbb{E}[U \mid a] = \max_{a \in A} \sum_s P(s \mid a) \, U(s, a)
-$$
-\subsection{Decision Network}
 
+\subsection{Decision Tree construction}
+The essence of the problem can be viewed as a decision-making task — specifically, choosing a recipe from a recipe book. To model this process systematically, a decision tree is constructed to represent the possible choices and outcomes. In this case, some problems would be:
+\begin{itemize}
+    \item What are the possible outcomes after recommending a recipe?
+    \item How to find the probability of these outcomes?
+    \item How to find the utility of these outcomes?
+\end{itemize}
+Our design is simple. The recipe will either be feasible or not, given the foods in the fridge. The feasibility of the recipe is assessed using a Bayesian network, and the utility of a feasible recipe is assessed using a supervised machine learning algorithm. The utility of an infeasible recipe is set to 0. A diagram illustration is given in appendix as Figure \ref{fig:DN}.
 \subsection{Decision Making Process}
+As a rational agent, our bot aims to choose the recipe that maximizes the expected utility. Here is the meaning of the notations we used in our formula:
+\begin{itemize}
+    \item Rec: The final recommendation 
+    \item R: The recipe book (set of all recipes)
+    \item r: A specific recipe
+    \item s: A binary value, representing feasible or not
+    \item P: The feasibility function
+    \item U: The utility function
+\end{itemize}
+With these notations, our algorithm can be represented as:
+$$
+\text{Rec} = \arg\max_{r \in R} \mathbb{E}[U \mid r] = \arg\max_{r \in R} \sum_s P(s \mid r) \, U(s, r)
+$$
+Since U(fail, r) = 0 by design, the formula can be simplified to:
+$$
+\text{Rec} = \arg\max_{r \in R} P(feasible \mid r) \, U(feasible, r)
+$$

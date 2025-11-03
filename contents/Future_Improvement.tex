@@ -3,3 +3,21 @@
 \subsection{Machine learning loopholes}
 
 \subsection{Reinforcement Learning}
+Currently, our agent is fixed after deployment. In other words, it will recommend the same recipe under the same conditions, even if the user is not satisfied with the result. Seeing this shortage, we plan to integrate model-based reinforcement learning into our agent. Currently, our agent does not have an "immediate reward" for recommending a recipe. Or we can say that the "immediate reward" is always 0 for all recipes. \par
+We plan to introduce a learnable function R(r), representing the reward for recommending the recipe r. Hence, the mathematical representation for the final choice becomes:
+$$
+\text{Rec} = \arg\max_{r \in R} \mathbb{E}[U \mid r]+ R(r) = \arg\max_{r \in R} \sum_s P(s \mid r) \, U(s, r) + R(r)
+$$
+This reward function, R, can be learned in a method similar to how the reward function is learned in model-based reinforcement learning. We will ask the user to rate the recommended dish after the recommendation from one to five. This user feedback will be used as the observed environmental reward. When feedback is given about recipe r, the function R is updated as follows:
+$$
+\text{R'(r)} = (1 - a)R(r) + a(S(f))
+$$
+Where the notation has the following meaning:
+\begin{itemize}
+    \item R' The updated reward function
+    \item f the user input feedback score
+    \item S the function that normalizes the feedback score
+    \item a the learning rate
+\end{itemize}
+Here, the learning rate for recipe r will decrease with the increasing number of feedback provided by for r from the user. This ensures the stability of our agent in the long run. \par
+With this new integration of reinforcement learning, our agent will be able to adopt the eating habits of each user and better scope its job to minimize food waste.

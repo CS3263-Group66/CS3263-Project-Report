@@ -1,8 +1,28 @@
 \section{Bayesian Network Inferencing}
-The probability of successfully making the recipe depends on various foods available in the fridge. In order to infer the probability of the success, a Bayesian Network is used for modeling.
+The \textbf{feasibility} of preparing recipe $\recipe_i$ depends on state of foods available in the \textbf{fridge} that is in the requirement set $\requirements_{\recipe_i}$. We assume that the state of each food is dependent on three characteristics of food $\food_i$: food type $\fty_{\food_i}$, storage type $\sty_{\food_i}$, and days in the fridge $\days_{\food_i}$. 
+
+Due to the partial observability of the true state of food items in the fridge, Bayesian Network is used for handling the uncertainty and infer the probability of the successful preparation of a specific recipe. The pgmpy (\cite{Ankan2024}) library is used to construct Bayesian Network and perform the inference task.
 
 \subsection{BN structure}
-This can be seen from the picture Figure~\ref{fig:BN}
-\subsection{Learning}
+The visual representation of the overall structure can be seen from the picture Figure~\ref{fig:BN}
 
-\subsection{BN reasoning}
+The feasibility of the recipe depends on feasibility of the food items, in other words, whether the food has expired. To model this relationship, we first construct a sub-Bayesian Network for each of the food item. In the sub-network, the node $expired_{\food_i}$, which is a random variable denoting the event whether the food is expired, has three parents nodes which representing the random variables for food type $\fty_{\food_i}$, storage type $\sty_{\food_i}$, and days in the fridge $\days_{\food_i}$ respectively. The parent nodes representing the observed characteristics of the food.
+
+The probability of successfully preparing the recipe is denoting by random variable $feasibility_{\recipe_i}$. We assume that the feasibility of each food item is conditionally independent of each other. As such, the node $feasibility_{\recipe_i}$ will have multiple parents that denoting the random variable of $expired_{\food_i}$ for each $\food_i$ in recipe's requirements respectively.
+
+Hence, we can derive following formulae for the probability of successfully preparing a recipe, i.e. feasibility of the recipe (Assume all food items required by the recipe can be found in the fridge):
+
+\begin{align*}
+&P(feasibility_{\recipe_i} | \Fridge) \\
+    &= P(feasibility_{\recipe_i} | expired_{\food_1}, \dots expired_{\food_{n}})\prod_{k=1}^nP(expired_{\food_i} | \food_{i}) \\
+    &=P(feasibility_{\recipe_i}  | expired_{\food_1}, \dots expired_{\food_{n}})\prod_{k=1}^nP(expired_{\food_i} | \fty_{\food_i}, \sty_{\food_i}, \days_{\food_i}) \\
+    &\Fridge \text{ denotes the current state of the fridge with all the food available } \\
+    &\food_{1} \dots \food_{n} \in \Fridge
+\end{align*}
+
+\subsection{Inference Framework}
+
+Here is the process of building the Bayesian Network and perform the inference process with the help of pgmpy.
+
+\subsection{Maximum Likelihood Estimate}
+We estimate the CPT using a maximum likelihood estimate, and we assume that we obtain the complete data for the demostration purpose.

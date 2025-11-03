@@ -1,6 +1,7 @@
 \documentclass{report}
 \renewcommand{\thesection}{\arabic{section}}
-
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
 \usepackage{titling}
 \usepackage{blindtext}
 \usepackage{amsmath}
@@ -66,19 +67,19 @@
 \newcommand{\FRZN}{\text{FROZEN}}
 \newcommand{\NORM}{\text{NORMAL\_TEMP}}
 
-\include{introduction}
-\include{contents/BN}
-\include{contents/Utility}
-\include{contents/Decision_Making}
-\include{contents/Future_Improvement}
-\include{contents/Responsible_AI}
+\input{introduction}
+\input{contents/Decision_Making}
+\input{contents/BN}
+\input{contents/Utility}
+\input{contents/Future_Improvement}
+\input{contents/Responsible_AI}
 
 \begin{appendices}
 \renewcommand{\thesection}{Appendix \arabic{section}}
 \include{appendix/appendices}
 \end{appendices}
 
-\bibliographystyle{ieeetr}
+\bibliographystyle{plainnat}
 \bibliography{reference}
 %%%%%%%%%%
 \end{document}
