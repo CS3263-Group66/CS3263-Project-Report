@@ -21,8 +21,17 @@ Hence, we can derive following formulae for the probability of successfully prep
 \end{align*}
 
 \subsection{Inference Framework}
-
 Here is the process of building the Bayesian Network and perform the inference process with the help of pgmpy.
+
+\begin{itemize}[topsep=0pt, partopsep=0pt, itemsep=2pt, parsep=0pt]
+    \item Extract food items from the fridge that is required by a recipe
+    \item Build $BN_{\food_i}$ for each food extracted
+    \item Connect $BN_{\food_i}$ to node $feasibility_{\recipe_i}$
+    \item Extract the evidence from each food items
+    \item Run variable elimination inference algorithm
+\end{itemize}
+
+The code that generates this part is presented in \ref{app:algorithms}
 
 \subsection{Maximum Likelihood Estimate}
 We estimate the CPT using a maximum likelihood estimate, and we assume that we obtain the complete data for the demostration purpose.
