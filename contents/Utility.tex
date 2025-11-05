@@ -1,8 +1,36 @@
-\section{Utility theory}
-Refer to textbook \cite{aima}
+\section{Utility}
+We calculate the utility of the recipe in order to make recommendations. Since our aim is to reduce the number of near-expiry food left in the fridge, the overall utility of a recipe consists of two parts, the utility of the recipe which depends the recipe itself, and an expiry score which depends on the available ingredients of this recipe.\par
+$$
+{Overall\ utility = utility\ of\ recipe + expiry\ score}
+$$
 
-\subsection{Utility Formulae}
-\input{appendix/algorithms/algo0}
+\subsection{Utility of recipe}
+The utility of each recipe is modeled as a function of multiple attributes, including the estimated cooking time, ease of preparation, nutritional profile, dietary classification (e.g., vegetarian), and course type (e.g., dessert). We apply the \textit{k}\nobreakdash-means clustering algorithm to group recipes with similar attribute profiles and assign a utility value to each cluster. Model training was conducted on the dataset described in \cite{RecipeDataset}.
 
+% \subsection{Utility Formulae}
+% \input{appendix/algorithms/algo0}
 
 \subsection{Learning for utility}
+The original dataset (\ref{app:data}) contains a large number of headers, many of which are redundant. For model development, we therefore restrict the feature set to the first 25 attributes (see Appendix 3 for the full list of 25 attributes). Because we aim to cluster recipes by similarity, we apply feature scaling so that all variables contribute comparably to the distance-based objective used by k-means clustering. Most attributes are binary indicators which are 0 or 1, whereas "step\_cnt" and "ingredient\_cnt" are integer-valued and can be $>1$. To prevent these count variables from disproportionately influencing Euclidean distances between vectorized recipes, we normalize them to the interval [0,1] via Min–Max scaling:
+\input{appendix/algorithms/algo0}
+In order to have a large diversity for the recipe utility, we set the number of clusters to $k = 2000$. The k-means algorithm is trained using $scikit-learn$ implementation. The trained model is saved into a ".joblib" file for future predictions.\par
+After clustering, each cluster is mapped to a utility value. For new recipes, we use the trained k-means algorithm to group it into a cluster, and map it to the corresponding utility value.
+
+\subsection{Expiry Score}
+The Expiry score is taken from the expiry probability model, which is the same node \textit{expired} in the Bayesian Network mentioned in section 3.1 including the three parent nodes representing random variables for food type \textit{fty}, storage type \textit{sty} and days in the fridge \textit{days}. \textit{expired} is a random variable with three outcomes, \textit{fresh}, \textit{near\_expiry} and \textit{expired}. Since we want to consider the number of food close to expiry and how close they are to expiry, we only consider the probability of near\_expiry given the parent nodes as evidence. To be more precise, we are only looking at:
+$$
+\text P({near\_expiry} | {\textit{fty}, \textit{sty}, \textit{days}})
+$$
+Since a recipe has multiple ingredients and we prefer to use more ingredients which will be expired soon, we calculate the average probability of near\_expiry probability of all ingredients in the fridge, denoted by  ${N_{stored}}$, multiplied by the number of ingredients in fridge ${N_{stored}}$. Hence, we have the following:
+
+$$
+{Expiry\ Score = \sum_{i} P({near\_expiry_i} | fty_i, sty_i, days_i), i\in fridge.foods \cap ingredients}
+$$
+Since we are only checking the expiry score of food items stored in the current fridge, we can always pass in the evidence from the food attribute as we query for the conditional probability.
+
+\subsection{Expected Utility}
+Since some ingredient of the recipe could be expired, hence not feasible, the expected utility is taken as:
+$$
+P(feasible|recipe) * U(recipe)
+$$
+where $U(recipe)$ is the utility of the recipe assuming that it is feasible.

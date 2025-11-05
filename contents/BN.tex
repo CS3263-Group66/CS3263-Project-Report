@@ -1,7 +1,7 @@
 \section{Bayesian Network Inferencing}
-The \textbf{feasibility} of preparing recipe $\recipe_i$ depends on state of foods available in the \textbf{fridge} that is in the requirement set $\requirements_{\recipe_i}$. We assume that the state of each food is dependent on three characteristics of food $\food_i$: food type $\fty_{\food_i}$, storage type $\sty_{\food_i}$, and days in the fridge $\days_{\food_i}$. 
+The \textbf{feasibility} of preparing recipe $\recipe_i$ depends on state of foods available in the \textbf{fridge} that is in the requirement set $\requirements_{\recipe_i}$. We assume that the state of each food is dependent on three characteristics of food $\food_i$: \textbf{food type} $\fty_{\food_i}$, \textbf{storage type} $\sty_{\food_i}$, and \textbf{days in the fridge} $\days_{\food_i}$. 
 
-Due to the partial observability of the true state of food items in the fridge, Bayesian Network is used for handling the uncertainty and infer the probability of the successful preparation of a specific recipe. The pgmpy (\cite{Ankan2024}) library is used to construct Bayesian Network and perform the inference task.
+Due to the partial observability of the true state of food items in the fridge, \textbf{\underline{Bayesian Network}} is used for handling the uncertainty and infer the probability of the successful preparation of a specific recipe. The \underline{\textbf{pgmpy}} (\cite{Ankan2024}) library is used to construct \textbf{\underline{Bayesian Network}} and perform the inference task.
 
 \subsection{BN structure}
 The visual representation of the overall structure can be seen from the picture Figure~\ref{fig:BN}
@@ -14,10 +14,10 @@ Hence, we can derive following formulae for the probability of successfully prep
 
 \begin{align*}
 &P(feasibility_{\recipe_i} | \Fridge) \\
-    &= P(feasibility_{\recipe_i} | expired_{\food_1}, \dots expired_{\food_{n}})\prod_{k=1}^nP(expired_{\food_i} | \food_{i}) \\
-    &=P(feasibility_{\recipe_i}  | expired_{\food_1}, \dots expired_{\food_{n}})\prod_{k=1}^nP(expired_{\food_i} | \fty_{\food_i}, \sty_{\food_i}, \days_{\food_i}) \\
-    &\Fridge \text{ denotes the current state of the fridge with all the food available } \\
-    &\food_{1} \dots \food_{n} \in \Fridge
+&= P(feasibility_{\recipe_i} | expired_{\food_1}, \dots expired_{\food_{n}})\prod_{k=1}^nP(expired_{\food_i} | \food_{i}) \\
+&=P(feasibility_{\recipe_i}  | expired_{\food_1}, \dots expired_{\food_{n}})\prod_{k=1}^nP(expired_{\food_i} | \fty_{\food_i}, \sty_{\food_i}, \days_{\food_i}) \\
+&\Fridge \text{ denotes the current state of the fridge with all the food available } \\
+&\food_{1} \dots \food_{n} \in \Fridge
 \end{align*}
 
 \subsection{Inference Framework}
@@ -34,4 +34,4 @@ Here is the process of building the Bayesian Network and perform the inference p
 The code that generates this part is presented in \ref{app:algorithms}
 
 \subsection{Maximum Likelihood Estimate}
-We estimate the CPT using a maximum likelihood estimate, and we assume that we obtain the complete data for the demostration purpose.
+We estimate the Conditional Probability Table of each node using a maximum likelihood estimate. We would estimate $P(a)=\frac{\#(a)}{N}$ where $\#(a)$ denotes the count of occurrences of $a$ in the dataset and $N$ is the number of samples. We can estimate conditional probability in a similar way: $P(a|b)=\frac{\#(a\wedge b)}{\#(b)}$. The complete set of data is in \ref{app:data}

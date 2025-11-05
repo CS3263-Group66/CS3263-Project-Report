@@ -1,16 +1,7 @@
-\section{algorithms}
-\label{app:algorithms}
-\begin{itemize}
-    \item algorithms demo: \input{appendix/algorithms/algo0}
-\end{itemize}
-\newpage
-
-\section{diagrams}
+\section{Diagrams}
 \label{app:diagrams}
 \begin{figure}[ht]
-    \centering
-    \includegraphics[width=1.0\textwidth]{appendix/Image/BN.png}
-    \caption{Bayesian Network structure}
+    \input{appendix/drawings/BN_diagram}
     \label{fig:BN}
 \end{figure}
 
@@ -20,3 +11,22 @@
     \caption{Decision Network structure}
     \label{fig:DN}
 \end{figure}
+
+\section{Data}
+\label{app:data}
+\begin{itemize}
+    \item attributes of recipe vector:
+    'preparation', 'time-to-make', 'course', 'main-ingredient', 'dietary', 'easy', 'occasion', 'cuisine', 'low-in-something', '60-minutes-or-less', 'main-dish', 'equipment', '30-minutes-or-less', 'number-of-servings', 'meat', '4-hours-or-less', 'desserts', 'vegetables', '3-steps-or-less', 'taste-mood', 'north-american', 'low-sodium', 'low-carb', 'healthy', '15-minutes-or-less', 'step\_cnt', 'ingredient\_cnt'
+
+    \item Training data for Utility function: \href{https://www.kaggle.com/datasets/realalexanderwei/food-com-recipes-with-ingredients-and-tags}{Kaggle — Food.com Recipes with Ingredients and Tags}
+    \item Training data for Bayesian Network: \href{https://github.com/CS3263-Group66/Group66-Project/blob/main/Code/Data/food_condition.csv}{GitHub — food\_condition.csv}
+\end{itemize}
+
+\section{Algorithm}
+\label{app:algorithm}
+\subsection{Algorithms for inference machine}
+\input{appendix/algorithms/algo1}
+
+\section{Acknowledgment of the use of Generative AI}
+
+We utilized Generative AI tools primarily to understand APIs of libraries used such as \textbf{pgmpy} and \textbf{scikit-learn}, and learn Latex syntax and packages to format and generate the report. The main design and implementation of different components of the application were done independently. AI tools were only used as reference and learning aids to become familiar with tools and syntax 

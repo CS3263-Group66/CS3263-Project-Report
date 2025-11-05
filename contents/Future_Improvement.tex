@@ -1,6 +1,16 @@
 \section{Future Improvement}
 
-\subsection{Machine learning loopholes}
+\subsection{Connection to Internet of Things}
+Currently, we estimate the expiration condition of a food item indirectly, using its type, storage condition, and storage duration. In real life, people use the appearance and smell to more directly estimate the expiration condition of a food item. We should also adopt this method and add the appearance and smell factor to our expiration probability model.\par
+
+To train the expiration Bayesian Net work, data about appearance and smell of food are required. Seeing this need, we plan to integrate the internet of things into our project. The following component will be implemented: \par
+\begin{itemize}
+    \item Camera: To collect appearance data of food items
+    \item Electronic Nose: To detect smell/chemical component in the fridge
+    \item Data Transmitter: Transmit data from the fridge to the computer
+\end{itemize}
+
+With the help of the Internet of Things, we can obtain expiration data with appearance and smell. We can retrain the updated BN with these data to make more realistic prediction.
 
 \subsection{Reinforcement Learning}
 Currently, our agent is fixed after deployment. In other words, it will recommend the same recipe under the same conditions, even if the user is not satisfied with the result. Seeing this shortage, we plan to integrate model-based reinforcement learning into our agent. Currently, our agent does not have an "immediate reward" for recommending a recipe. Or we can say that the "immediate reward" is always 0 for all recipes. \par
